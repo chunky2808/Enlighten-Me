@@ -1,26 +1,26 @@
 {% extends 'base.html' %}
 
 {% block breadcrumb %}
-       <li class="breadcrumb-item active">Enlight</li>
+   <li class="breadcrumb-item">Forums</li>
+          <li class="breadcrumb-item active"><a href ="{% url 'forum' %}">{{topics.subject}}</a></li>
 {% endblock %}
 
 {% block content %}
       <table class="table">
         <thead class="thead-inverse">
           <tr>
-            <th>Forum</th>
-            <th>Posts</th>
-            <th>Topics</th>
+            <th>Topic</th>
+            <th>Started by</th>
+            <th>Last updated</th>
             <th>Last Post</th>
           </tr>
         </thead>
         <tbody>
-          {% for forum in forums %}
+          {% for topic in topics %}
             <tr>
               <td>
-               <a href="#">  {{ forum.name }}</a>
-                <small class="text-muted d-block">{{ forum.desc }}</small>
-              </td>
+                {{ topic.subject }}
+               </td>
               <td class="align-middle">0</td>
               <td class="align-middle">0</td>
               <td></td>
@@ -28,4 +28,18 @@
           {% endfor %}
         </tbody>
       </table>
+
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
