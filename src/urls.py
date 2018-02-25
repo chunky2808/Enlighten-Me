@@ -20,6 +20,7 @@ from Enlight import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^topics/(?P<pk>\d+)/$', views.topic_list, name='topic'),
-    url(r'^$',views.forum_list,name='forum')
+    url(r'^forum/(?P<pk>\d+)/$', views.topic_list, name='topic'),
+    url(r'^forum/(?P<pk>\d+)/new/$', views.new_topic, name='new_topic'),
+    url(r'^$',views.forum_list,name='home')
 ]

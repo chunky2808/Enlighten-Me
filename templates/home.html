@@ -18,7 +18,7 @@
           {% for forum in forums %}
             <tr>
               <td>
-               <a href="#">  {{ forum.name }}</a>
+               <a href="{% url 'topic' forum.pk %}">  {{ forum.name }}</a>
                 <small class="text-muted d-block">{{ forum.desc }}</small>
               </td>
               <td class="align-middle">0</td>

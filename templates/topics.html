@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
 {% block breadcrumb %}
-   <li class="breadcrumb-item">Forums</li>
-          <li class="breadcrumb-item active"><a href ="{% url 'forum' %}">{{topics.subject}}</a></li>
+<li class="breadcrumb-item"><a href ="{% url 'home' %}">Forums</a></li>
+   <li class="breadcrumb-item active">{{forums.name}}</li>
 {% endblock %}
 
 {% block content %}
+<a href="{% url 'new_topic' forums.pk %}"><button type="button" class="btn btn-primary">New</button></a>
       <table class="table">
         <thead class="thead-inverse">
           <tr>
