@@ -8,7 +8,7 @@
 {% block content %}
 <a href="{% url 'new_topic' forums.pk %}"><button type="button" class="btn btn-primary">New</button></a>
       <table class="table">
-        <thead class="thead-inverse">
+        <thead class="thead-  verse">
           <tr>
             <th>Topic</th>
             <th>Started by</th>
@@ -25,8 +25,8 @@
                <a href="{% url 'topic_posts' forums.pk topic.pk %}"> {{ topic.subject }}</a>
                </td>
               <td class="align-middle">{{topic.started_by}}</td>
-              <td class="align-middle">0</td>
-              <td class="align-middle">0</td>
+              <td class="align-middle">{{ topic.replies }}</td>
+              <td class="align-middle">{{ topic.views }}</td>
               <td class="align-middle">{{topic.last_updated}}</td>
               <td></td>
             </tr>

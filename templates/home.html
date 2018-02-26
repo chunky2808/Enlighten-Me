@@ -21,8 +21,9 @@
                <a href="{% url 'topic' forum.pk %}">  {{ forum.name }}</a>
                 <small class="text-muted d-block">{{ forum.desc }}</small>
               </td>
-              <td class="align-middle">0</td>
-              <td class="align-middle">0</td>
+              <td class="align-middle">{{forum.get_count}}</td>
+              <td class="align-middle">  {{ forum.topics.count }}</td>
+              <td class="align-middle">  {{ forum.get_last_post }}</td>
               <td></td>
             </tr>
           {% endfor %}
