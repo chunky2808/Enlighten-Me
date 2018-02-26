@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^forum/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/reply/$', views.reply_topic, name='reply_topic'),
     url(r'^forum/(?P<pk>\d+)/$', views.topic_list, name='topic'),
     url(r'^forum/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/$', views.topic_posts, name='topic_posts'),
+    url(r'^forum/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/delete/$', views.delete, name='delete'),
     url(r'^forum/(?P<pk>\d+)/new/$', views.new_topic, name='new_topic'),
     url(r'^$',views.forum_list,name='home')
 ]

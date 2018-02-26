@@ -59,3 +59,8 @@ def reply_topic(request, pk, topic_pk):
     else:
         form = PostForm()
     return render(request, 'reply_topic.html', {'topic': topic, 'form': form})
+
+def delete(request, pk, topic_pk):
+    topic = get_object_or_404(Topic, forum__pk=pk, pk=topic_pk)
+    return render(request, 'delete.html')
+
