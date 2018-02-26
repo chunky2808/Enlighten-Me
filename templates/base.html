@@ -2,10 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}Forums{% endblock %}</title>
+    <title>{% block title %}Enlighten Me!{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css?family=Peralta" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+    
+    {% block css%}  {% endblock%}
     {% block stylesheet %}{% endblock %}
   </head>
   <body>
@@ -13,7 +15,7 @@
 
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand" href="{% url 'home' %}">Forums</a>
+          <a class="navbar-brand" href="{% url 'home' %}">Enlighten Me! - Your One Stop Site For all Programming Needs.</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
