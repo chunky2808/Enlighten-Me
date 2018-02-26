@@ -12,18 +12,22 @@
           <tr>
             <th>Topic</th>
             <th>Started by</th>
+            <th>Replies</th>
+            <th>Views</th>
             <th>Last updated</th>
-            <th>Last Post</th>
+            
           </tr>
         </thead>
         <tbody>
           {% for topic in topics %}
             <tr>
               <td>
-                {{ topic.subject }}
+               <a href="{% url 'topic_posts' forums.pk topic.pk %}"> {{ topic.subject }}</a>
                </td>
+              <td class="align-middle">{{topic.started_by}}</td>
               <td class="align-middle">0</td>
               <td class="align-middle">0</td>
+              <td class="align-middle">{{topic.last_updated}}</td>
               <td></td>
             </tr>
           {% endfor %}
