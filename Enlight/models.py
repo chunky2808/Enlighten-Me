@@ -26,6 +26,10 @@ class Topic(models.Model):
     def __str__(self):
         return self.subject
 
+    def delete_thread(self,pk):
+    	a = Topic.objects.get(pk=pk)
+    	return a.delete()    
+
 
 class Post(models.Model):
     message = models.TextField(max_length=4000)

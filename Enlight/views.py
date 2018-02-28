@@ -62,5 +62,10 @@ def reply_topic(request, pk, topic_pk):
 
 def delete(request, pk, topic_pk):
     topic = get_object_or_404(Topic, forum__pk=pk, pk=topic_pk)
-    return render(request, 'delete.html')
+    topic.delete()
+    forums = get_object_or_404(Forum,pk=pk)
+    topics = forums.topics.order_by('-last_updated').annotate(replies=Count('posts') - 1)
+    return render(request,'topics.html',{'topics' : topics,'forums' : forums})
+
+    return render(request, 'topic_posts.html' , {'topic': topic})
 
