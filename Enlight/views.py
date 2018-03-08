@@ -106,7 +106,7 @@ def news(request):
             totalResults = top_headlines[i]
             #print(totalResults)
     #print(li)
-    return HttpResponse("hi")
-    #return render(request,'news.html',{'li' : li})
+    #return HttpResponse("hi")
+    return render(request,'news.html',{'li' : li})
 
 
