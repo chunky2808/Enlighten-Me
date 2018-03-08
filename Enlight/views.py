@@ -4,7 +4,10 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import Forum,Topic,Post
 from .forms import NewTopicForm,PostForm
 from django.contrib.auth.decorators import login_required
+from newsapi import NewsApiClient
+from django.http import HttpResponse
 
+newsapi = NewsApiClient(api_key='')
 
 def forum_list(request):
 	forums = Forum.objects.all()
@@ -68,4 +71,42 @@ def delete(request, pk, topic_pk):
     return render(request,'topics.html',{'topics' : topics,'forums' : forums})
 
     return render(request, 'topic_posts.html' , {'topic': topic})
+
+def news(request):
+    top_headlines = newsapi.get_top_headlines(
+                                          sources='techradar,techcrunch,ars-technica,crypto-coins-news,engadget,hacker-news,recode,t3n,the-next-web,the-verge,wired',
+                                          #sources='techradar',
+                                          language='en',
+                                          #pageSize = ,
+                                          #page=5,
+                                          )
+    #print(top_headlines)
+    li = []
+    for i in top_headlines:
+        if i == "articles":
+            #print(top_headlines[i])
+            p = top_headlines[i]
+            for k in top_headlines[i]:
+                for l in k:
+                    #print(l)
+                    abc = {}
+                    if l == "title":
+                        abc["Title"]  = k[l]
+                        li.append(abc)
+                    elif l == "description":
+                        abc["Description"]  = k[l]
+                        li.append(abc)
+                    elif l == "url":
+                        abc["Url"]  = k[l]
+                        li.append(abc)   
+                #print(k)
+                # if k == "source":
+                #     print(title)
+        elif i == "totalResults":
+            totalResults = top_headlines[i]
+            #print(totalResults)
+    #print(li)
+    return HttpResponse("hi")
+    #return render(request,'news.html',{'li' : li})
+
 

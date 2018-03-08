@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+
+{% for main in li %}
+    <div class="card mb-2">
+      <div class="card-body p-3">
+        {% for key,value in main.items %}
+        <div class="row mb-3">
+          <div class="col-6">
+            <strong class="text-muted">{{key}}</strong>
+          </div>
+           </div>
+           {% if key == "Url" %}
+            <strong class="text-muted"><a href = "{{value}}"> {{value}}</a></strong>
+            {% endif %}
+            
+            {% if key == "Title" %}
+            <strong class="text-muted">{{value}}</strong>
+            {% endif %}
+
+            {% if key == "Description" %}
+            <strong class="text-muted">{{value}}</strong>
+            {% endif %}
+          
+          {% endfor %}
+      </div>
+    </div>
+    
+  {% endfor %}
+
+
+{% endblock %}
