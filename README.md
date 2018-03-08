@@ -1,7 +1,11 @@
 # Enlighten-Me
-Enlighten Me!!-One stop Site for your all Programming Needs.
+Enlighten Me! - One Stop Site For all your Tech News and Discussion.
 
-Enthusiastic programmer can create new Thread for discussion on particular Subject. 
+Using NewsApi to get Tech News from more than 10 sites.           
+
+Enthusiastic programmers can Read News, have a discussion on news.
+
+They can also create thread for particular topic.
 
 For each thread , subthread can be created for various topics in the subject.
 
