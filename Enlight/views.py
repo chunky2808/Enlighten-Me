@@ -12,10 +12,7 @@ newsapi = NewsApiClient(api_key='')
 
 def forum_list(request):
     forums = Forum.objects.all()
-    # for fori in forums:
-    # 	print(fori.name)
-    # 	print(fori.desc)
-    return render(request,'home.html',{'forums':forums})
+    return render(request, 'home.html', {'forums':forums})
 
 
 def topic_list(request, pk):
@@ -82,16 +79,11 @@ def delete(request, pk, topic_pk):
 def news(request):
     top_headlines = newsapi.get_top_headlines(
                                           sources='techradar,techcrunch,ars-technica,crypto-coins-news,engadget,hacker-news,recode,t3n,the-next-web,the-verge,wired',
-                                          #sources='techradar',
                                           language='en',
-                                          #pageSize = ,
-                                          #page=5,
                                           )
-    #print(top_headlines)
     li = []
     for i in top_headlines:
         if i == "articles":
-            #print(top_headlines[i])
             p = top_headlines[i]
             for k in top_headlines[i]:
                 for l in k:
@@ -105,15 +97,9 @@ def news(request):
                         li.append(abc)
                     elif l == "url":
                         abc["Url"]  = k[l]
-                        li.append(abc)   
-                #print(k)
-                # if k == "source":
-                #     print(title)
+                        li.append(abc)
         elif i == "totalResults":
             totalResults = top_headlines[i]
-            #print(totalResults)
-    #print(li)
-    #return HttpResponse("hi")
     return render(request,'news.html',{'li' : li})
 
 
