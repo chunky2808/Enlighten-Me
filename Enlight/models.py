@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+
 class Forum(models.Model):
     name = models.CharField(max_length = 50,unique=True)
     desc = models.CharField(max_length=100)
@@ -23,12 +24,13 @@ class Topic(models.Model):
     forum = models.ForeignKey(Forum,related_name = 'topics')
     started_by = models.ForeignKey(User,related_name='topics')
     views = models.PositiveIntegerField(default=0)
+
     def __str__(self):
         return self.subject
 
     def delete_thread(self,pk):
-    	a = Topic.objects.get(pk=pk)
-    	return a.delete()    
+        a = Topic.objects.get(pk=pk)
+        return a.delete()
 
 
 class Post(models.Model):

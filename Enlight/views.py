@@ -1,31 +1,35 @@
 from django.contrib.auth.models import User
 from django.db.models import Count
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Forum,Topic,Post
-from .forms import NewTopicForm,PostForm
+from .models import Forum, Topic, Post
+from .forms import NewTopicForm, PostForm
 from django.contrib.auth.decorators import login_required
 from newsapi import NewsApiClient
 from django.http import HttpResponse
 
 newsapi = NewsApiClient(api_key='')
 
+
 def forum_list(request):
-	forums = Forum.objects.all()
-	# for fori in forums:
-	# 	print(fori.name)
-	# 	print(fori.desc)
-	return render(request,'home.html',{'forums':forums})
+    forums = Forum.objects.all()
+    # for fori in forums:
+    # 	print(fori.name)
+    # 	print(fori.desc)
+    return render(request,'home.html',{'forums':forums})
+
 
 def topic_list(request, pk):
     forums = get_object_or_404(Forum,pk=pk)
     topics = forums.topics.order_by('-last_updated').annotate(replies=Count('posts') - 1)
     return render(request,'topics.html',{'topics' : topics,'forums' : forums})
 
+
 def topic_posts(request, pk, topic_pk):
     topic = get_object_or_404(Topic, forum__pk=pk, pk=topic_pk)
     topic.views += 1
     topic.save()
     return render(request, 'topic_posts.html', {'topic': topic})
+
 
 @login_required
 def new_topic(request, pk):
@@ -48,6 +52,7 @@ def new_topic(request, pk):
         form = NewTopicForm()
     return render(request, 'new_topic.html', {'forum': forum, 'form': form})
 
+
 @login_required
 def reply_topic(request, pk, topic_pk):
     topic = get_object_or_404(Topic, forum__pk=pk, pk=topic_pk)
@@ -63,6 +68,7 @@ def reply_topic(request, pk, topic_pk):
         form = PostForm()
     return render(request, 'reply_topic.html', {'topic': topic, 'form': form})
 
+
 def delete(request, pk, topic_pk):
     topic = get_object_or_404(Topic, forum__pk=pk, pk=topic_pk)
     topic.delete()
@@ -70,7 +76,8 @@ def delete(request, pk, topic_pk):
     topics = forums.topics.order_by('-last_updated').annotate(replies=Count('posts') - 1)
     return render(request,'topics.html',{'topics' : topics,'forums' : forums})
 
-    return render(request, 'topic_posts.html' , {'topic': topic})
+    # return render(request, 'topic_posts.html' , {'topic': topic})
+
 
 def news(request):
     top_headlines = newsapi.get_top_headlines(
